@@ -1,0 +1,1 @@
+[1773820640864_Bright_Coffee_Shop___Case_Study_Description.pdf](https://github.com/user-attachments/files/26223445/1773820640864_Bright_Coffee_Shop___Case_Study_Description.pdf)
