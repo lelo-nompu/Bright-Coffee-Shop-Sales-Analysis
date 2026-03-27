@@ -152,3 +152,28 @@ SELECT
 FROM workspace.default.bright_coffee_shop_sales
 GROUP BY product_type
 ORDER BY revenue DESC;
+
+--- Create table for visualisation and dashboard ---
+
+CREATE OR REPLACE TABLE bright_coffee_shop_sales_dashboard
+
+SELECT 
+    transaction_id,
+    transaction_date,
+    dayname(transaction_date) AS day_name,
+    
+    CASE 
+        WHEN date_format(transaction_time, 'HH:mm:ss') BETWEEN '06:00:00' AND '11:59:59' THEN 'Morning'
+        WHEN date_format(transaction_time, 'HH:mm:ss') BETWEEN '12:00:00' AND '16:59:59' THEN 'Afternoon'
+        WHEN date_format(transaction_time, 'HH:mm:ss') BETWEEN '17:00:00' AND '20:59:59' THEN 'Evening'
+        ELSE 'Night'
+    END AS time_category,
+
+    store_location,
+    product_category,
+    product_type,
+    product_detail,
+    transaction_qty,
+    unit_price,
+    (transaction_qty * unit_price) AS revenue
+FROM workspace.default.bright_coffee_shop_sales;
